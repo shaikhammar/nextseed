@@ -1,9 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { auth } from '@/lib/auth';
 import { signOut } from '@/lib/auth-client';
-import { getHeaders } from 'better-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'sonner';

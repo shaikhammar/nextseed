@@ -1,5 +1,3 @@
-import { SendVerificationEmailForm } from '@/components/send-verification-email-form';
-
 export default async function Page() {
   return (
     <div className='flex flex-col gap-4 m-10 justify-center items-center'>
