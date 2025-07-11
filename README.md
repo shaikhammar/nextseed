@@ -12,6 +12,8 @@ NextSeed is a robust and modern starter kit for building web applications with N
 
   - Session management.
 
+- **Prisma**: A next-generation ORM (Object-Relational Mapper) for Node.js and TypeScript, used for database access.
+
 - **Nodemailer**: Integrated for reliable email sending, specifically configured for email verification during user registration.
 
 - **Tailwind CSS 4**: Utility-first CSS framework for rapid and consistent styling.
@@ -40,7 +42,7 @@ Make sure you have the following installed:
 
 1.  **Clone the repository:**
 
-    ```
+    ```bash
     git clone [https://github.com/your-username/nextseed.git](https://github.com/your-username/nextseed.git)
     cd nextseed
     ```
@@ -48,13 +50,13 @@ Make sure you have the following installed:
 2.  **Create `.env.local`:**
     Copy the contents of `sample-env` to a new file named `.env.local` in the root of your project:
 
-    ```
+    ```bash
     cp sample-env .env.local
     ```
 
 3.  **Install dependencies:**
 
-    ```
+    ```bash
     npm install
     # or yarn install
     ```
@@ -73,7 +75,7 @@ NextSeed uses environment variables for configuration. Create a `.env.local` fil
 
 - **`NEXT_PUBLIC_API_URL`**: The public base URL for your API endpoints, accessible on the client. **Change this to your actual application URL.**
 
-- **`DATABASE_URL`**: Your database connection string (e.g., for SQLite, PostgreSQL, MySQL). **Change this to your database connection string.**
+- **`DATABASE_URL`**: Your database connection string (e.g., `postgresql://user:password@host:port/database`, `mysql://user:password@host:port/database`, or `file:./dev.db` for SQLite). This is used by Prisma to connect to your database. **Change this to your database connection string.**
 
 - **`SMTP_HOST`**: The hostname of your SMTP server (e.g., `smtp.gmail.com`).
 
@@ -81,16 +83,16 @@ NextSeed uses environment variables for configuration. Create a `.env.local` fil
 
 - **`NODEMAILER_USER`**: The email address used to authenticate with the SMTP server (the sender's email).
 
-- **`NODEMAILER_APP_PASSWORD`**: The password or app-specific password for the `NODEMAILER_USER` email account. For providers like Gmail, this often needs to be an [App Password](https://support.google.com/accounts/answer/185833?hl=en).
+- **`NODEMAILER_APP_PASSWORD`**: The password or app-specific password for the `NODEMAILER_USER` email account. For providers like Gmail, this often needs to be an [App Password](https://support.google.com/accounts/answer/185833?hl=en) if 2FA is enabled.
 
-  ```
+  ```env
   # .env.local example
   APP_NAME="NextSeed"
   NEXT_PUBLIC_APP_NAME="NextSeed"
   BETTER_AUTH_SECRET="your_strong_secret_key"
   BETTER_AUTH_URL="http://localhost:3000/api/auth"
   NEXT_PUBLIC_API_URL="http://localhost:3000/api"
-  DATABASE_URL="file:./dev.db"
+  DATABASE_URL="file:./dev.db" # Example for SQLite
   SMTP_HOST="smtp.example.com"
   SMTP_PORT="587"
   NODEMAILER_USER="your_email@example.com"
@@ -101,10 +103,12 @@ NextSeed uses environment variables for configuration. Create a `.env.local` fil
 
 1.  **Start the development server:**
 
-    ```
+    ```bash
     npm run dev
     # or yarn dev
     ```
+
+    The database schema will be automatically pushed on `npm run dev` if changes are detected.
 
 2.  Open [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) in your browser to see the application.
 
